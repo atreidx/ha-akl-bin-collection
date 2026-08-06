@@ -1,0 +1,12 @@
+{
+  "domain": "akl_bin_collection",
+  "name": "Auckland Council Bin Collection",
+  "codeowners": ["@atreidx"],
+  "config_flow": true,
+  "documentation": "https://github.com/atreidx/ha-akl-bin-collection",
+  "integration_type": "service",
+  "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/atreidx/ha-akl-bin-collection/issues",
+  "requirements": [],
+  "version": "0.1.0"
+}

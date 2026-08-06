@@ -1,0 +1,38 @@
+{
+  "title": "Auckland Council Bin Collection",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Add an Auckland Council property",
+        "description": "Enter the numeric property ID from your Auckland Council collection-day URL.",
+        "data": {
+          "property_id": "Property ID"
+        },
+        "data_description": {
+          "property_id": "For example, 12345678901"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Could not connect to Auckland Council. Try again later.",
+      "invalid_property_id": "No household collection dates were found for this property ID.",
+      "unknown": "An unexpected error occurred."
+    },
+    "abort": {
+      "already_configured": "This property is already configured."
+    }
+  },
+  "entity": {
+    "sensor": {
+      "rubbish": {
+        "name": "Rubbish"
+      },
+      "recycling": {
+        "name": "Recycling"
+      },
+      "food_scraps": {
+        "name": "Food scraps"
+      }
+    }
+  }
+}
