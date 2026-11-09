@@ -15,22 +15,14 @@ _AUCKLAND_TIME_ZONE = ZoneInfo("Pacific/Auckland")
 _MAX_RESPONSE_SIZE = 10 * 1024 * 1024
 _REQUEST_TIMEOUT = ClientTimeout(total=30)
 
-_BROWSER_HEADERS = {
-    "Accept": (
-        "text/html,application/xhtml+xml,application/xml;q=0.9,"
-        "image/avif,image/webp,*/*;q=0.8"
-    ),
-    "Accept-Language": "en-NZ,en;q=0.9,en-US;q=0.8",
-    "Cache-Control": "max-age=0",
-    "Sec-Fetch-Dest": "document",
-    "Sec-Fetch-Mode": "navigate",
-    "Sec-Fetch-Site": "none",
-    "Sec-Fetch-User": "?1",
-    "Upgrade-Insecure-Requests": "1",
+# Identify the integration honestly. A spoofed Chrome User-Agent is rejected
+# by the council site with HTTP 406, while a plain client identifier is served.
+_REQUEST_HEADERS = {
+    "Accept": "text/html,application/xhtml+xml",
+    "Accept-Language": "en-NZ,en;q=0.9",
     "User-Agent": (
-        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-        "AppleWebKit/537.36 (KHTML, like Gecko) "
-        "Chrome/135.0.0.0 Safari/537.36"
+        "ha-akl-bin-collection/0.1.0 "
+        "(+https://github.com/atreidx/ha-akl-bin-collection)"
     ),
 }
 
@@ -94,7 +86,7 @@ class AucklandCouncilApi:
 
         try:
             async with self._session.get(
-                url, headers=_BROWSER_HEADERS, timeout=_REQUEST_TIMEOUT
+                url, headers=_REQUEST_HEADERS, timeout=_REQUEST_TIMEOUT
             ) as response:
                 if response.status == 404:
                     raise AucklandCouncilInvalidPropertyError(
